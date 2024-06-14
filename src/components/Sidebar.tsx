@@ -8,6 +8,7 @@ import {
   IoCheckboxOutline,
   IoCodeWorking,
   IoListOutline,
+  IoPersonOutline,
 } from "react-icons/io5";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
@@ -37,6 +38,11 @@ const menuItems = [
     icon: <IoBaseballOutline />,
     title: "Productos",
     path: "/dashboard/products",
+  },
+  {
+    icon: <IoPersonOutline />,
+    title: "Perfil",
+    path: "/dashboard/profile",
   },
 ];
 

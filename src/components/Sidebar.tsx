@@ -9,6 +9,8 @@ import {
   IoCodeWorking,
   IoListOutline,
 } from "react-icons/io5";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 const menuItems = [
   {
@@ -38,7 +40,17 @@ const menuItems = [
   },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await auth();
+
+  const userName = session?.user?.name ?? "No name";
+
+  const avatarUrl = session?.user?.image
+    ? session.user.image
+    : "https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp";
+
+  //const userRole = session?.user?na
+
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -56,14 +68,14 @@ export const Sidebar = () => {
 
         <div className="mt-8 text-center">
           <Image
-            src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
+            src={avatarUrl}
             alt=""
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             width={500}
             height={500}
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-            Cynthia J. Watts
+            {userName}
           </h5>
           <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>

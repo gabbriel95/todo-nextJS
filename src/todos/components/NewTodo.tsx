@@ -4,10 +4,13 @@ import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { addTodo, deleteCompleted } from "../actions/todo-actions";
-//import * as todosApi from "@/todos/helpers/todos";
+import * as todosApi from "@/todos/helpers/todos";
 
 export const NewTodo = () => {
   const [description, setDescription] = useState("");
+
+  //leer el usuario
+  //  const user = getUserSessionServer();
 
   const router = useRouter();
 
@@ -16,12 +19,12 @@ export const NewTodo = () => {
 
     if (description.trim().length === 0) return;
 
-    //await todosApi.createTodo(description);
-    await addTodo(description);
+    await todosApi.createTodo(description); //RestFull Api
+    //await addTodo(description, user.id);
 
+    router.refresh();
     setDescription("");
 
-    //router.refresh();
   };
 
   /*const deleteCompleted = async () => {

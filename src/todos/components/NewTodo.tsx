@@ -19,12 +19,11 @@ export const NewTodo = () => {
 
     if (description.trim().length === 0) return;
 
-    await todosApi.createTodo(description); //RestFull Api
-    //await addTodo(description, user.id);
+    // await todosApi.createTodo(description); //RestFull Api
+    await addTodo(description);
 
-    router.refresh();
+    //router.refresh();
     setDescription("");
-
   };
 
   /*const deleteCompleted = async () => {

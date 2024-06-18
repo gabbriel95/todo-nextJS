@@ -15,8 +15,6 @@ export const signInEmailPassword = async (email: string, password: string) => {
     return null;
   }
 
-  console.log("TODO OK EN signInEmailPassword");
-
   return user;
 };
 

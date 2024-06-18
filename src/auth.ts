@@ -8,6 +8,7 @@ import { signInEmailPassword } from "./auth/actions/auth-actions";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
   providers: [
     github,
     google,
@@ -22,7 +23,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           typeof credentials.email !== "string" ||
           typeof credentials.password !== "string"
         ) {
-          console.log("ERRORRR");
           return null;
         }
 
@@ -32,7 +32,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
 
         if (user) {
-          console.log("TODO OK EN RETORNO DE USUARIO");
           return user;
         }
 
